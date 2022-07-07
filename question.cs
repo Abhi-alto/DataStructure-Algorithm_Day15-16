@@ -8,23 +8,34 @@ namespace Algorithms_DataStructures
 {
     internal class question
     {
-        public static void anagram(String fix, String s)
+        public static void insertionSort(String SENTENCE)
         {
-            int l = s.Length;
-            if (l == 1)
+            String[]sentence=SENTENCE.Split(' ');
+            for (int x = 0; x < sentence.Length; x++)               //PRINTING THE PREVIOUS ARRAY OF STRINGS
             {
-                Console.WriteLine(fix + s);
+                Console.Write(sentence[x] + " ");
             }
-            else
+            for (int x = 1; x < (sentence.Length)-1; x++)
             {
-                for (int i = 0; i < l; i++)
+                int i = x;
+                String t = sentence[x];
+                while (sentence[i - 1].CompareTo(t)>0)
                 {
-                    char[] mychar = s.ToCharArray();
-                    char c = mychar[i];
-                    String st = s.Substring(0, i) + s.Substring(i + 1);
-                    anagram(fix + c, st);
+                    sentence[i] = sentence[i - 1];
+                    i--;
+                    if (i == 0)
+                    {
+                        break;
+                    }
                 }
+                sentence[i] = t;
             }
+            Console.WriteLine();
+            for(int x=0; x < sentence.Length; x++)              //PRINTING THE NEW ARRAY OF STRINGS
+            {
+                Console.Write(sentence[x]+" ");
+            }
+
         }
     }
 }
