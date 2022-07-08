@@ -1,10 +1,9 @@
 ﻿using Algorithms_DataStructures;
 Console.WriteLine("Hello, to the algorithm and data structure problems");
-Console.WriteLine("Prime numbers between range 0-1000 are -");
-for(int x=2;x<=1000;x++)
-{
-    if(question.prime(x) == true && question.palindrome(x)==true)
-    {
-        Console.WriteLine(x);
-    }
-}
+Console.WriteLine("Enter your choice -");
+Console.WriteLine("1- Binary Search");
+Console.WriteLine("2- Bubble Sort");
+Console.WriteLine("3- Insertion Sort");
+Console.WriteLine("4- Merge Sort");
+int ch = Convert.ToInt16(Console.ReadLine());
+choice.CHOICE(ch);
