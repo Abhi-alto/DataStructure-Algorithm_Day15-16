@@ -8,21 +8,35 @@ namespace Algorithms_DataStructures
 {
     internal class question
     {
-        public static int[] bubbleSort(int[] array)                     //bubble sort an integer array
+       static List<String> words = new List<String>();
+        string find;
+        string Anagram;
+        public question(String find,string Anagram)
         {
-            for(int i=0;i<array.Length;i++)
+            this.find = find;
+            this.Anagram = Anagram;
+        }
+        public void anagram(String fix, String s)
+        {
+            int l = s.Length;
+            if (l == 1)
             {
-                for(int j=0;j<array.Length-1;j++)
+               // Console.WriteLine(fix + s);
+                if((fix+s).CompareTo(find)==0)
                 {
-                    if(array[j]>array[j+1])
-                    {
-                        int tempo=array[j];
-                        array[j]=array[j+1];
-                        array[j + 1] = tempo; ;
-                    }
+                    Console.WriteLine(find+" is an anagram of "+Anagram);
                 }
             }
-            return array;
+            else
+            {
+                for (int i = 0; i < l; i++)
+                {
+                    char[] mychar = s.ToCharArray();
+                    char c = mychar[i];
+                    String st = s.Substring(0, i) + s.Substring(i + 1);
+                    anagram(fix + c, st);
+                }
+            }
         }
     }
 }
