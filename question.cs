@@ -8,34 +8,59 @@ namespace Algorithms_DataStructures
 {
     internal class question
     {
-        public static void insertionSort(String SENTENCE)
+        public static string[] MergeSort(String[]a,int lb,int ub)
         {
-            String[]sentence=SENTENCE.Split(' ');
-            for (int x = 0; x < sentence.Length; x++)               //PRINTING THE PREVIOUS ARRAY OF STRINGS
+            if(lb<ub)
             {
-                Console.Write(sentence[x] + " ");
+                int mid=(lb+ub)/2;
+                MergeSort(a,lb,mid);                        //first array
+                MergeSort(a, mid + 1, ub);                  //second array
+                merge(a, lb, mid, ub);                      //merging both the sorted arrays
             }
-            for (int x = 1; x < (sentence.Length)-1; x++)
+            return a;
+        }
+        public static void merge(String[]a,int lb,int mid, int ub)
+        {
+            string[] b = new string[a.Length];
+            int i = lb;                      //index for the first part of the array
+            int j = mid + 1;                //for the second part of the array
+            int k = lb;                     //index number for the new array formed
+            while(i<=mid && j<=ub)
             {
-                int i = x;
-                String t = sentence[x];
-                while (sentence[i - 1].CompareTo(t)>0)
+                if(a[i].CompareTo(a[j])<=0)                 //if second array has greater element than the first array element
                 {
-                    sentence[i] = sentence[i - 1];
-                    i--;
-                    if (i == 0)
-                    {
-                        break;
-                    }
+                    b[k] = a[i];
+                    i++;
                 }
-                sentence[i] = t;
+                else                                         //if first array has greater element than the seconds array element
+                {
+                    b[k] = a[j];
+                    j++;
+                }
+                k++;                                    //third array element index incemented
             }
-            Console.WriteLine();
-            for(int x=0; x < sentence.Length; x++)              //PRINTING THE NEW ARRAY OF STRINGS
+            if (i > mid)                                //if first array has fully been copied but second hasn't
             {
-                Console.Write(sentence[x]+" ");
+                while (j <= ub)
+                {
+                    b[k] = a[j];
+                    j++;
+                    k++;
+                }
             }
-
+            else if (j > ub)                            //if second array has fully been copied but first hasn't
+            {
+                while (i <= mid)
+                {
+                    b[k] = a[i];
+                    i++;
+                    k++;
+                }
+            }
+            for(int x=lb;x<=ub;x++)                 //coping data from b array to the first array
+            {
+                a[x] = b[x];
+            }
         }
     }
 }
